@@ -1,0 +1,1114 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For Pruthvi - Cinematic Birthday Celebration</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        emeraldTheme: {
+                            50: '#f0fdf4',
+                            100: '#dcfce7',
+                            500: '#10b981',
+                            600: '#059669',
+                            800: '#065f46',
+                            900: '#064e3b',
+                            sage: '#87a96b',
+                            darkSage: '#4a6b41',
+                        },
+                        romantic: {
+                            rose: '#f43f5e',
+                            pinkLight: '#ffe4e6',
+                            redDeep: '#9f1239',
+                            gold: '#f59e0b'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts: Inter & Playfair Display -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .font-serif {
+            font-family: 'Playfair Display', serif;
+        }
+        /* Custom animations */
+        @keyframes floatSlow {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(3deg); }
+        }
+        .animate-float {
+            animation: floatSlow 6s ease-in-out infinite;
+        }
+        @keyframes pulseGlow {
+            0%, 100% { box-shadow: 0 0 15px rgba(16, 185, 129, 0.4); }
+            50% { box-shadow: 0 0 30px rgba(244, 63, 94, 0.7); }
+        }
+        .pulse-glow {
+            animation: pulseGlow 3s infinite;
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+        }
+        .dark-glass {
+            background: rgba(6, 78, 59, 0.85);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(135, 169, 107, 0.3);
+        }
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #dcfce7;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #87a96b;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #059669;
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-emerald-900 via-emerald-800 to-emerald-950 text-slate-800 min-h-screen relative overflow-x-hidden">
+
+    <!-- Floating Background Petals/Sparkles Container -->
+    <div id="ambient-particles" class="fixed inset-0 pointer-events-none z-0 overflow-hidden"></div>
+
+    <!-- Global Audio & Music Toggle Widget -->
+    <div id="audio-widget" class="fixed bottom-6 right-6 z-50 hidden">
+        <button id="music-toggle-btn" onclick="toggleBackgroundMusic()" class="bg-emerald-600 hover:bg-emerald-500 text-white p-4 rounded-full shadow-2xl flex items-center justify-center transition-all transform hover:scale-110 pulse-glow" title="Toggle Romantic Melody">
+            <i id="music-icon" class="fas fa-music text-xl"></i>
+        </button>
+    </div>
+
+    <!-- Custom Notification Box (Replaces alert()) -->
+    <div id="custom-modal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm hidden">
+        <div class="glass-panel p-6 rounded-2xl max-w-sm w-full mx-4 shadow-2xl text-center border border-emerald-500/30 animate-float">
+            <div id="modal-icon" class="text-4xl text-emerald-600 mb-3"><i class="fas fa-heart"></i></div>
+            <h3 id="modal-title" class="text-xl font-bold font-serif text-emerald-900 mb-2">Message</h3>
+            <p id="modal-message" class="text-slate-600 text-sm mb-6">Something wonderful happened!</p>
+            <button onclick="closeModal()" class="w-full bg-gradient-to-r from-emerald-600 to-rose-500 text-white font-semibold py-2.5 rounded-xl shadow-lg hover:opacity-90 transition">Close</button>
+        </div>
+    </div>
+
+    <!-- ==================== SECTION 1: LOGIN SCREEN ==================== -->
+    <section id="sec-login" class="relative z-10 min-h-screen flex items-center justify-center p-4">
+        <!-- Romantic video/gradient backdrop simulation -->
+        <div class="absolute inset-0 z-0 overflow-hidden opacity-30">
+            <div class="absolute -inset-10 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-rose-500 via-emerald-600 to-emerald-950 blur-3xl animate-pulse"></div>
+        </div>
+
+        <div class="glass-panel w-full max-w-md p-8 rounded-3xl shadow-2xl relative z-10 border border-white/60">
+            <div class="text-center mb-8">
+                <div class="inline-block p-3 rounded-full bg-emerald-100 text-emerald-700 text-3xl mb-3 shadow-inner">
+                    <i class="fas fa-heart-pulse"></i>
+                </div>
+                <h1 class="text-3xl font-bold font-serif text-emerald-900">For PRUTHVI</h1>
+                <p class="text-xs text-slate-500 uppercase tracking-widest mt-1">Cinematic Birthday Experience</p>
+            </div>
+
+            <form id="login-form" onsubmit="handleLogin(event)" class="space-y-5">
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-emerald-800 mb-1">User ID</label>
+                    <div class="relative">
+                        <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center text-slate-400"><i class="fas fa-user"></i></span>
+                        <input type="text" id="login-userid" value="" required class="w-full pl-10 pr-4 py-3 bg-white/80 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500 text-slate-800 font-medium uppercase tracking-wider" placeholder="Enter User ID">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-emerald-800 mb-1">Password</label>
+                    <div class="relative">
+                        <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center text-slate-400"><i class="fas fa-lock"></i></span>
+                        <input type="password" id="login-password" value="" required class="w-full pl-10 pr-12 py-3 bg-white/80 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500 text-slate-800 font-medium tracking-widest" placeholder="Enter Password">
+                        <button type="button" onclick="togglePasswordVisibility()" class="absolute inset-y-0 right-0 pr-3.5 flex items-center text-slate-400 hover:text-emerald-600 focus:outline-none">
+                            <i id="eye-icon" class="fas fa-eye"></i>
+                        </button>
+                    </div>
+                    <p class="text-[11px] text-slate-400 mt-1 italic">Hint: User ID is PRUTHVI, Password is your special date (25OCT)</p>
+                </div>
+
+                <button type="submit" class="w-full py-3.5 px-4 bg-gradient-to-r from-emerald-600 via-sage to-rose-500 hover:from-emerald-700 hover:to-rose-600 text-white font-bold rounded-xl shadow-lg transition transform active:scale-95 flex items-center justify-center space-x-2">
+                    <span>Enter Celebration</span>
+                    <i class="fas fa-arrow-right"></i>
+                </button>
+            </form>
+
+            <div class="mt-8 text-center text-xs text-slate-500">
+                <p>Crafted with endless love & romantic melodies ✨</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== MAIN APP CONTAINER (Hidden until Login) ==================== -->
+    <div id="main-app" class="hidden relative z-10 pb-20">
+
+        <!-- Navigation Header -->
+        <header class="sticky top-0 z-40 bg-emerald-950/80 backdrop-blur-md border-b border-emerald-800/50 text-white px-4 py-3 shadow-md">
+            <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between">
+                <div class="flex items-center space-x-3 cursor-pointer" onclick="navigateToSection('sec-dashboard')">
+                    <div class="w-9 h-9 rounded-full bg-gradient-to-tr from-rose-500 to-emerald-500 flex items-center justify-center shadow">
+                        <i class="fas fa-crown text-white text-sm"></i>
+                    </div>
+                    <div>
+                        <h2 class="font-serif font-bold text-lg leading-tight">PRUTHVI's World</h2>
+                        <span class="text-[10px] text-emerald-300 uppercase tracking-widest">Emerald & Rose Edition</span>
+                    </div>
+                </div>
+
+                <!-- Quick Nav Links -->
+                <nav class="hidden md:flex items-center space-x-1 lg:space-x-2 text-xs font-medium overflow-x-auto py-1">
+                    <button onclick="navigateToSection('sec-dashboard')" class="px-3 py-1.5 rounded-lg hover:bg-emerald-900 transition">Home</button>
+                    <button onclick="navigateToSection('sec-letter')" class="px-3 py-1.5 rounded-lg hover:bg-emerald-900 transition">Letter</button>
+                    <button onclick="navigateToSection('sec-wishes')" class="px-3 py-1.5 rounded-lg hover:bg-emerald-900 transition">Wishes</button>
+                    <button onclick="navigateToSection('sec-cake')" class="px-3 py-1.5 rounded-lg hover:bg-emerald-900 transition">Cake</button>
+                    <button onclick="navigateToSection('sec-gallery')" class="px-3 py-1.5 rounded-lg hover:bg-emerald-900 transition">Gallery</button>
+                    <button onclick="navigateToSection('sec-video')" class="px-3 py-1.5 rounded-lg hover:bg-emerald-900 transition">Video</button>
+                    <button onclick="navigateToSection('sec-reasons')" class="px-3 py-1.5 rounded-lg hover:bg-emerald-900 transition">15 Reasons</button>
+                    <button onclick="navigateToSection('sec-game')" class="px-3 py-1.5 rounded-lg hover:bg-emerald-900 transition">Catcher Game</button>
+                    <button onclick="navigateToSection('sec-gift')" class="px-3 py-1.5 rounded-lg hover:bg-emerald-900 transition">Gift</button>
+                    <button onclick="navigateToSection('sec-finale')" class="px-3 py-1.5 rounded-lg bg-rose-600 hover:bg-rose-500 transition text-white">Finale 🎉</button>
+                </nav>
+
+                <div class="flex items-center space-x-2">
+                    <button onclick="toggleBackgroundMusic()" id="nav-music-btn" class="bg-emerald-900 hover:bg-emerald-800 text-emerald-200 p-2 rounded-lg text-xs flex items-center space-x-1 border border-emerald-700">
+                        <i class="fas fa-volume-high"></i>
+                        <span class="hidden sm:inline">Music On</span>
+                    </button>
+                    <button onclick="openNavDrawer()" class="md:hidden text-emerald-200 hover:text-white p-2">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Mobile Drawer Menu -->
+        <div id="mobile-drawer" class="fixed inset-0 z-50 bg-black/70 backdrop-blur-md hidden flex flex-col items-center justify-center p-6 space-y-4">
+            <button onclick="closeNavDrawer()" class="absolute top-6 right-6 text-white text-2xl"><i class="fas fa-times"></i></button>
+            <h3 class="text-2xl font-serif font-bold text-rose-400 mb-4">Navigation Menu</h3>
+            <div class="grid grid-cols-2 gap-3 w-full max-w-xs text-center">
+                <button onclick="navigateToSection('sec-dashboard'); closeNavDrawer();" class="p-3 bg-emerald-900 text-white rounded-xl">Home</button>
+                <button onclick="navigateToSection('sec-letter'); closeNavDrawer();" class="p-3 bg-emerald-900 text-white rounded-xl">Letter</button>
+                <button onclick="navigateToSection('sec-wishes'); closeNavDrawer();" class="p-3 bg-emerald-900 text-white rounded-xl">Wishes</button>
+                <button onclick="navigateToSection('sec-cake'); closeNavDrawer();" class="p-3 bg-emerald-900 text-white rounded-xl">Cake</button>
+                <button onclick="navigateToSection('sec-gallery'); closeNavDrawer();" class="p-3 bg-emerald-900 text-white rounded-xl">Gallery</button>
+                <button onclick="navigateToSection('sec-video'); closeNavDrawer();" class="p-3 bg-emerald-900 text-white rounded-xl">Video</button>
+                <button onclick="navigateToSection('sec-reasons'); closeNavDrawer();" class="p-3 bg-emerald-900 text-white rounded-xl">15 Reasons</button>
+                <button onclick="navigateToSection('sec-game'); closeNavDrawer();" class="p-3 bg-emerald-900 text-white rounded-xl">Game</button>
+                <button onclick="navigateToSection('sec-gift'); closeNavDrawer();" class="p-3 bg-emerald-900 text-white rounded-xl">Gift</button>
+                <button onclick="navigateToSection('sec-finale'); closeNavDrawer();" class="p-3 bg-rose-600 text-white rounded-xl col-span-2">Finale 🎉</button>
+            </div>
+        </div>
+
+        <!-- ==================== SECTION 2: WELCOME DASHBOARD & HOME ==================== -->
+        <section id="sec-dashboard" class="max-w-6xl mx-auto px-4 pt-12 pb-16">
+            <div class="text-center py-10">
+                <span class="px-4 py-1.5 rounded-full bg-emerald-800/80 text-emerald-200 text-xs font-semibold uppercase tracking-widest border border-emerald-600/50 inline-block mb-4 shadow">
+                    ✨ October 25th Celebration ✨
+                </span>
+                <h1 class="text-4xl md:text-6xl font-bold font-serif text-white mb-4 drop-shadow-lg">
+                    Happy Birthday, <span class="text-rose-400">PRUTHVI!</span>
+                </h1>
+                <p class="text-emerald-200 text-lg max-w-2xl mx-auto font-light">
+                    Welcome to your personalized cinematic sanctuary. Explore each magical section curated with emerald elegance, sage touches, and rose warmth just for you.
+                </p>
+
+                
+            </div>
+
+            <!-- Dashboard Grid of 10 Interactive Cards -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mt-6">
+                <!-- Card 3: Letter -->
+                <div onclick="navigateToSection('sec-letter')" class="glass-panel p-6 rounded-3xl shadow-xl hover:shadow-2xl transition-all transform hover:-translate-y-2 cursor-pointer border-t-4 border-rose-500 group">
+                    <div class="w-12 h-12 rounded-2xl bg-rose-100 text-rose-600 flex items-center justify-center text-xl mb-4 group-hover:scale-110 transition">
+                        <i class="fas fa-envelope-open-text"></i>
+                    </div>
+                    <h3 class="font-serif font-bold text-xl text-emerald-900 mb-1">Heartfelt Letter</h3>
+                    <p class="text-slate-600 text-sm">opening with personalized type writer message.</p>
+                </div>
+
+                <!-- Card 4: Wishes -->
+                <div onclick="navigateToSection('sec-wishes')" class="glass-panel p-6 rounded-3xl shadow-xl hover:shadow-2xl transition-all transform hover:-translate-y-2 cursor-pointer border-t-4 border-emerald-500 group">
+                    <div class="w-12 h-12 rounded-2xl bg-emerald-100 text-emerald-600 flex items-center justify-center text-xl mb-4 group-hover:scale-110 transition">
+                        <i class="fas fa-wand-magic-sparkles"></i>
+                    </div>
+                    <h3 class="font-serif font-bold text-xl text-emerald-900 mb-1">Wish Generator</h3>
+                    <p class="text-slate-600 text-sm">Birthday wishes in multiple languages instantly.</p>
+                </div>
+
+                <!-- Card 5: Cake Ceremony -->
+                <div onclick="navigateToSection('sec-cake')" class="glass-panel p-6 rounded-3xl shadow-xl hover:shadow-2xl transition-all transform hover:-translate-y-2 cursor-pointer border-t-4 border-amber-500 group">
+                    <div class="w-12 h-12 rounded-2xl bg-amber-100 text-amber-600 flex items-center justify-center text-xl mb-4 group-hover:scale-110 transition">
+                        <i class="fas fa-cake-candles"></i>
+                    </div>
+                    <h3 class="font-serif font-bold text-xl text-emerald-900 mb-1">Cake Ceremony</h3>
+                    <p class="text-slate-600 text-sm">Light candles, make a wish, slice the 3-layer cake & confetti!</p>
+                </div>
+
+                <!-- Card 6: Gallery -->
+                <div onclick="navigateToSection('sec-gallery')" class="glass-panel p-6 rounded-3xl shadow-xl hover:shadow-2xl transition-all transform hover:-translate-y-2 cursor-pointer border-t-4 border-emerald-600 group">
+                    <div class="w-12 h-12 rounded-2xl bg-emerald-200 text-emerald-800 flex items-center justify-center text-xl mb-4 group-hover:scale-110 transition">
+                        <i class="fas fa-images"></i>
+                    </div>
+                    <h3 class="font-serif font-bold text-xl text-emerald-900 mb-1">Memory Gallery</h3>
+                    <p class="text-slate-600 text-sm">Cinematic photo collection with zoom lightbox and slideshow.</p>
+                </div>
+
+                <!-- Card 7: Video Player -->
+                <div onclick="navigateToSection('sec-video')" class="glass-panel p-6 rounded-3xl shadow-xl hover:shadow-2xl transition-all transform hover:-translate-y-2 cursor-pointer border-t-4 border-rose-600 group">
+                    <div class="w-12 h-12 rounded-2xl bg-rose-200 text-rose-800 flex items-center justify-center text-xl mb-4 group-hover:scale-110 transition">
+                        <i class="fas fa-film"></i>
+                    </div>
+                    <h3 class="font-serif font-bold text-xl text-emerald-900 mb-1">Special Video</h3>
+                    <p class="text-slate-600 text-sm">Cinematic custom video player dedicated to your cherished moments.</p>
+                </div>
+
+                <!-- Card 8: Special Reasons -->
+                <div onclick="navigateToSection('sec-reasons')" class="glass-panel p-6 rounded-3xl shadow-xl hover:shadow-2xl transition-all transform hover:-translate-y-2 cursor-pointer border-t-4 border-emerald-400 group">
+                    <div class="w-12 h-12 rounded-2xl bg-emerald-50 text-emerald-700 flex items-center justify-center text-xl mb-4 group-hover:scale-110 transition">
+                        <i class="fas fa-heart-circle-check"></i>
+                    </div>
+                    <h3 class="font-serif font-bold text-xl text-emerald-900 mb-1">15+ Reasons</h3>
+                    <p class="text-slate-600 text-sm">Interactive appreciation cards celebrating why you are so special.</p>
+                </div>
+
+                <!-- Card 9: Surprise Game -->
+                <div onclick="navigateToSection('sec-game')" class="glass-panel p-6 rounded-3xl shadow-xl hover:shadow-2xl transition-all transform hover:-translate-y-2 cursor-pointer border-t-4 border-purple-500 group">
+                    <div class="w-12 h-12 rounded-2xl bg-purple-100 text-purple-600 flex items-center justify-center text-xl mb-4 group-hover:scale-110 transition">
+                        <i class="fas fa-gamepad"></i>
+                    </div>
+                    <h3 class="font-serif font-bold text-xl text-emerald-900 mb-1">Surprise Catcher</h3>
+                    <p class="text-slate-600 text-sm">Play the catcher mini-game and unlock a romantic trophy!</p>
+                </div>
+
+                <!-- Card 10: Gift Page -->
+                <div onclick="navigateToSection('sec-gift')" class="glass-panel p-6 rounded-3xl shadow-xl hover:shadow-2xl transition-all transform hover:-translate-y-2 cursor-pointer border-t-4 border-rose-400 group">
+                    <div class="w-12 h-12 rounded-2xl bg-rose-50 text-rose-700 flex items-center justify-center text-xl mb-4 group-hover:scale-110 transition">
+                        <i class="fas fa-gift"></i>
+                    </div>
+                    <h3 class="font-serif font-bold text-xl text-emerald-900 mb-1">Secret Gift</h3>
+                    <p class="text-slate-600 text-sm">Open the animated gift box to reveal your surprise certificate.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== SECTION 3: BIRTHDAY LETTER ==================== -->
+        <section id="sec-letter" class="max-w-4xl mx-auto px-4 py-16">
+            <div class="text-center mb-10">
+                <span class="text-rose-400 text-xs font-semibold uppercase tracking-widest">Section 03</span>
+                <h2 class="text-3xl font-bold font-serif text-white mt-1">A Heartfelt Letter For You</h2>
+            </div>
+
+            <div class="glass-panel p-8 md:p-12 rounded-3xl shadow-2xl relative overflow-hidden">
+                <!-- Envelope State -->
+                <div id="envelope-container" class="text-center py-12">
+                    <div class="w-28 h-20 bg-emerald-800 rounded-xl mx-auto mb-6 shadow-2xl relative flex items-center justify-center cursor-pointer hover:scale-105 transition" onclick="openLetter()">
+                        <div class="absolute top-0 w-0 h-0 border-l-[56px] border-l-transparent border-r-[56px] border-r-transparent border-t-[40px] border-t-emerald-700"></div>
+                        <div class="w-10 h-10 rounded-full bg-rose-600 text-white flex items-center justify-center shadow-lg z-10 animate-bounce">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                    </div>
+                    <h3 class="font-serif text-2xl font-bold text-emerald-900 mb-2">You've Got Mail, PRUTHVI</h3>
+                    <p class="text-slate-600 text-sm mb-6">Click the envelope to unveil a secret message written with all my heart.</p>
+                    <button onclick="openLetter()" class="px-6 py-3 bg-emerald-600 hover:bg-emerald-500 text-white font-semibold rounded-xl shadow-lg transition">Open Envelope 💌</button>
+                </div>
+
+                <!-- Letter Content State (Hidden initially) -->
+                <div id="letter-content" class="hidden space-y-6">
+                    <div class="flex items-center justify-between border-b border-slate-200 pb-4">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-10 h-10 rounded-full bg-rose-500 text-white flex items-center justify-center font-bold">N</div>
+                            <div>
+                                <h4 class="font-serif font-bold text-emerald-900">Dearest PRUTHVI,</h4>
+                                <span class="text-xs text-slate-400">October 25th - Forever Special</span>
+                            </div>
+                        </div>
+                        <button onclick="resetLetter()" class="text-xs text-emerald-700 hover:underline"><i class="fas fa-redo">Close Letter</i></button>
+                    </div>
+
+                    <div id="typewriter-text" class="text-slate-700 leading-relaxed font-serif text-lg min-h-[160px] whitespace-pre-line"></div>
+
+                    <div class="pt-4 border-t border-slate-200 flex items-center justify-between">
+                        <span class="text-xs text-slate-500 italic">With all my love, admiration, and deepest warmth.</span>
+                        <div class="text-rose-600 text-xl"><i class="fas fa-heart"></i></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== SECTION 4: BIRTHDAY WISHES ==================== -->
+        <section id="sec-wishes" class="max-w-4xl mx-auto px-4 py-16">
+            <div class="text-center mb-10">
+                <span class="text-rose-400 text-xs font-semibold uppercase tracking-widest">Section 04</span>
+                <h2 class="text-3xl font-bold font-serif text-white mt-1">Magical Wish Generator</h2>
+                <p class="text-emerald-200 text-sm mt-2">Select a language and generate romantic birthday blessings instantly.</p>
+            </div>
+
+            <div class="glass-panel p-8 rounded-3xl shadow-2xl">
+                <div class="flex flex-wrap items-center justify-center gap-3 mb-8">
+                    <button onclick="generateWish('en')" class="wish-lang-btn px-4 py-2 bg-emerald-600 text-white rounded-xl text-sm font-semibold shadow transition">English</button>
+                    <button onclick="generateWish('es')" class="wish-lang-btn px-4 py-2 bg-emerald-800 text-emerald-200 rounded-xl text-sm font-semibold shadow transition">Spanish (Español)</button>
+                    <button onclick="generateWish('fr')" class="wish-lang-btn px-4 py-2 bg-emerald-800 text-emerald-200 rounded-xl text-sm font-semibold shadow transition">French (Français)</button>
+                    <button onclick="generateWish('po')" class="wish-lang-btn px-4 py-2 bg-emerald-800 text-emerald-200 rounded-xl text-sm font-semibold shadow transition">Poetic</button>
+                </div>
+
+                <div class="bg-white/80 border border-emerald-200 p-6 rounded-2xl shadow-inner text-center relative">
+                    <span class="absolute top-4 left-4 text-emerald-300 text-2xl font-serif">“</span>
+                    <p id="wish-display-text" class="font-serif text-xl text-slate-800 italic px-6 py-4">
+                        May your birthday sparkle with moments of love, laughter, and goodwill, and may the year ahead be full of blessings and joy. Happy Birthday, PRUTHVI!
+                    </p>
+                    <span class="absolute bottom-4 right-4 text-emerald-300 text-2xl font-serif">”</span>
+
+                    <div class="mt-6 flex items-center justify-center space-x-4">
+                        <button onclick="copyWishText()" class="px-5 py-2.5 bg-emerald-700 hover:bg-emerald-600 text-white rounded-xl text-sm font-medium shadow flex items-center space-x-2 transition">
+                            <i class="fas fa-copy"></i>
+                            <span>Copy Wish</span>
+                        </button>
+                        <button onclick="randomizeWish()" class="px-5 py-2.5 bg-rose-600 hover:bg-rose-500 text-white rounded-xl text-sm font-medium shadow flex items-center space-x-2 transition">
+                            <i class="fas fa-dice"></i>
+                            <span>Another Wish</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== SECTION 5: CAKE CEREMONY ==================== -->
+        <section id="sec-cake" class="max-w-4xl mx-auto px-4 py-16">
+            <div class="text-center mb-10">
+                <span class="text-rose-400 text-xs font-semibold uppercase tracking-widest">Section 05</span>
+                <h2 class="text-3xl font-bold font-serif text-white mt-1">The Birthday Cake Ceremony</h2>
+                <p class="text-emerald-200 text-sm mt-2">Light the candles, make your secret wish, and slice the emerald & rose cake!</p>
+            </div>
+
+            <div class="glass-panel p-8 md:p-12 rounded-3xl shadow-2xl text-center relative">
+                <!-- Cake & Candles visual -->
+                <div class="relative w-64 h-64 mx-auto mb-8 flex flex-col items-center justify-end">
+                    <!-- Candles -->
+                    <div id="cake-candles" class="flex space-x-3 mb-2 z-10">
+                        <div class="flex flex-col items-center">
+                            <div id="flame-1" class="w-3 h-5 bg-amber-400 rounded-full animate-pulse shadow-[0_0_12px_#f59e0b]"></div>
+                            <div class="w-2 h-10 bg-rose-400 rounded-sm"></div>
+                        </div>
+                        <div class="flex flex-col items-center">
+                            <div id="flame-2" class="w-3 h-5 bg-amber-400 rounded-full animate-pulse shadow-[0_0_12px_#f59e0b]"></div>
+                            <div class="w-2 h-10 bg-emerald-400 rounded-sm"></div>
+                        </div>
+                        <div class="flex flex-col items-center">
+                            <div id="flame-3" class="w-3 h-5 bg-amber-400 rounded-full animate-pulse shadow-[0_0_12px_#f59e0b]"></div>
+                            <div class="w-2 h-10 bg-rose-400 rounded-sm"></div>
+                        </div>
+                    </div>
+
+                    <!-- 3-Layer Cake -->
+                    <div id="cake-body" class="w-full transition-all duration-700">
+                        <!-- Top Tier -->
+                        <div class="w-36 h-12 bg-rose-500 mx-auto rounded-t-xl shadow-md border-b-2 border-rose-700 flex items-center justify-center text-white font-bold text-xs uppercase tracking-wider">PRUTHVI</div>
+                        <!-- Middle Tier -->
+                        <div class="w-48 h-14 bg-emerald-600 mx-auto rounded-t-lg shadow-md border-b-2 border-emerald-800 flex items-center justify-center text-emerald-100 text-xs">✨ October 25 ✨</div>
+                        <!-- Bottom Tier -->
+                        <div class="w-60 h-16 bg-emerald-900 mx-auto rounded-t-xl shadow-xl border-b-4 border-emerald-950 flex items-center justify-center text-emerald-200 font-serif text-sm">Happy Birthday</div>
+                    </div>
+                </div>
+
+                <!-- Wish input & Action buttons -->
+                <div class="max-w-md mx-auto space-y-4">
+                    <input type="text" id="cake-wish-input" placeholder="Type your secret birthday wish here..." class="w-full px-4 py-3 bg-white/90 border border-slate-200 rounded-xl text-sm focus:ring-2 focus:ring-emerald-500 focus:outline-none text-slate-800">
+                    
+                    <div class="flex flex-wrap gap-3 justify-center">
+                        <button onclick="blowCandles()" class="px-5 py-2.5 bg-amber-500 hover:bg-amber-600 text-white font-semibold rounded-xl text-sm shadow transition">Blow Candles 🕯️</button>
+                        <button onclick="sliceCake()" class="px-5 py-2.5 bg-rose-600 hover:bg-rose-500 text-white font-semibold rounded-xl text-sm shadow transition">Slice Cake 🍰</button>
+                        <button onclick="triggerCakeConfetti()" class="px-5 py-2.5 bg-emerald-600 hover:bg-emerald-500 text-white font-semibold rounded-xl text-sm shadow transition">Confetti 🎉</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== SECTION 6: MEMORY GALLERY ==================== -->
+        <section id="sec-gallery" class="max-w-6xl mx-auto px-4 py-16">
+            <div class="text-center mb-10">
+                <span class="text-rose-400 text-xs font-semibold uppercase tracking-widest">Section 06</span>
+                <h2 class="text-3xl font-bold font-serif text-white mt-1">Cinematic Memory Gallery</h2>
+                <p class="text-emerald-200 text-sm mt-2">Moments frozen in time, gleaming with emerald and rose beauty.</p>
+            </div>
+
+            <!-- Gallery Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Item 1 -->
+                <div class="glass-panel rounded-3xl overflow-hidden shadow-xl group cursor-pointer" onclick="openLightbox('images/1a.jpeg', 'Elegance in your smile, kindness in your heart, and beauty in your soul. 💕')">
+                    <div class="h-64 overflow-hidden relative">
+                        <img src="images/1a.jpeg" alt="Memory 1" class="w-full h-full object-cover group-hover:scale-110 transition duration-500" onerror="this.src='https://placehold.co/800x600/064e3b/ffffff?text=PRUTHVI+Memory+1'">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-85 flex items-end p-6">
+                            <div>
+                                <span class="text-xs text-rose-400 font-semibold">October Special</span>
+                                <h4 class="font-serif font-bold text-white text-lg">Elegance in your smile, kindness in your heart, and beauty in your soul. 💕</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 2 -->
+                <div class="glass-panel rounded-3xl overflow-hidden shadow-xl group cursor-pointer" onclick="openLightbox('images/1b.jpeg', 'Your beautiful smile makes every moment brighter, Akka! ')">
+                    <div class="h-64 overflow-hidden relative">
+                        <img src="images/1b.jpeg" alt="Memory 2" class="w-full h-full object-cover group-hover:scale-110 transition duration-500" onerror="this.src='https://placehold.co/800x600/059669/ffffff?text=PRUTHVI+Memory+2'">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-85 flex items-end p-6">
+                            <div>
+                                <span class="text-xs text-rose-400 font-semibold">Joyful Spirit</span>
+                                <h4 class="font-serif font-bold text-white text-lg">Your beautiful smile makes every moment brighter, Akka! </h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 3 -->
+                <div class="glass-panel rounded-3xl overflow-hidden shadow-xl group cursor-pointer" onclick="openLightbox('images/1c.jpeg', 'A sister by bond, a best friend by heart, and a blessing forever! 💖🎂')">
+                    <div class="h-64 overflow-hidden relative">
+                        <img src="images/1c.jpeg" class="w-full h-full object-cover group-hover:scale-110 transition duration-500" onerror="this.src='https://placehold.co/800x600/87a96b/ffffff?text=PRUTHVI+Memory+3'">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-85 flex items-end p-6">
+                            <div>
+                                <span class="text-xs text-rose-400 font-semibold">Grace</span>
+                                <h4 class="font-serif font-bold text-white text-lg">A sister by bond, a best friend by heart, and a blessing forever! 💖🎂</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Lightbox Modal -->
+            <div id="lightbox-modal" class="fixed inset-0 z-50 bg-black/90 backdrop-blur-md hidden flex flex-col items-center justify-center p-4">
+                <button onclick="closeLightbox()" class="absolute top-6 right-6 text-white text-3xl hover:text-rose-400 transition"><i class="fas fa-times"></i></button>
+                <img id="lightbox-img" src="" alt="Zoomed memory" class="max-w-full max-h-[75vh] object-contain rounded-2xl shadow-2xl border border-emerald-500/30 mb-4">
+                <h3 id="lightbox-caption" class="text-white font-serif text-xl font-medium tracking-wide">Caption</h3>
+            </div>
+        </section>
+
+        <!-- ==================== SECTION 7: CUSTOM VIDEO PLAYER ==================== -->
+        <section id="sec-video" class="max-w-4xl mx-auto px-4 py-16">
+            <div class="text-center mb-10">
+                <span class="text-rose-400 text-xs font-semibold uppercase tracking-widest">Section 07</span>
+                <h2 class="text-3xl font-bold font-serif text-white mt-1">Cinematic Birthday Tribute Video</h2>
+                <p class="text-emerald-200 text-sm mt-2">A dedicated video player showcasing unforgettable highlights.</p>
+            </div>
+
+            <div class="glass-panel p-6 rounded-3xl shadow-2xl relative overflow-hidden">
+                <div class="relative rounded-2xl overflow-hidden bg-black aspect-video flex items-center justify-center shadow-inner">
+                    <!-- Simulated video element or responsive embedded romantic video -->
+                    <video id="custom-video-player" class="w-full h-full object-cover" poster="https://images.unsplash.com/photo-1518199266791-5375a83190b7?auto=format&fit=crop&w=1200&q=80" loop>
+                        <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4" type="video/mp4">
+                        Your browser does not support video.
+                    </video>
+                    <div id="video-overlay-play" class="absolute inset-0 bg-black/40 flex items-center justify-center cursor-pointer hover:bg-black/30 transition" onclick="toggleCustomVideo()">
+                        <div class="w-20 h-20 rounded-full bg-rose-600 text-white flex items-center justify-center text-2xl shadow-2xl transform hover:scale-110 transition">
+                            <i id="play-pause-icon" class="fas fa-play ml-1"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-4 flex items-center justify-between text-slate-700 px-2">
+                    <span class="text-xs font-semibold uppercase tracking-wider text-emerald-900">PRUTHVI's Cinematic Reel</span>
+                    <button onclick="toggleCustomVideo()" class="px-4 py-2 bg-emerald-700 hover:bg-emerald-600 text-white text-xs font-semibold rounded-xl shadow transition">Play / Pause</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== SECTION 8: SPECIAL REASONS ==================== -->
+        <section id="sec-reasons" class="max-w-5xl mx-auto px-4 py-16">
+            <div class="text-center mb-10">
+                <span class="text-rose-400 text-xs font-semibold uppercase tracking-widest">Section 08</span>
+                <h2 class="text-3xl font-bold font-serif text-white mt-1">15+ Reasons Why You Are Extraordinary</h2>
+                <p class="text-emerald-200 text-sm mt-2">Click each card to discover why PRUTHVI lights up the world.</p>
+            </div>
+
+            <div id="reasons-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Populated via JavaScript for 15 reasons -->
+            </div>
+        </section>
+
+        <!-- ==================== SECTION 9: SURPRISE GAME ==================== -->
+        <section id="sec-game" class="max-w-4xl mx-auto px-4 py-16">
+            <div class="text-center mb-10">
+                <span class="text-rose-400 text-xs font-semibold uppercase tracking-widest">Section 09</span>
+                <h2 class="text-3xl font-bold font-serif text-white mt-1">Catch The Romantic Symbols</h2>
+                <p class="text-emerald-200 text-sm mt-2">Catch falling hearts, stars, and emerald gems to unlock the Secret Trophy!</p>
+            </div>
+
+            <div class="glass-panel p-6 rounded-3xl shadow-2xl text-center relative overflow-hidden">
+                <div class="flex justify-between items-center mb-4 px-4 bg-emerald-900/10 py-2 rounded-xl">
+                    <span class="font-bold text-emerald-900">Score: <span id="game-score" class="text-rose-600">0</span> / 10</span>
+                    <button id="game-start-btn" onclick="startGame()" class="px-5 py-2 bg-emerald-600 hover:bg-emerald-500 text-white font-semibold rounded-xl text-xs shadow transition">Start Game</button>
+                </div>
+
+                <!-- Canvas for Catcher Game -->
+                <div class="relative w-full h-80 bg-emerald-950/90 rounded-2xl overflow-hidden border border-emerald-700/50 shadow-inner">
+                    <canvas id="catcher-canvas" class="w-full h-full block cursor-crosshair"></canvas>
+                    <div id="game-overlay-msg" class="absolute inset-0 flex flex-col items-center justify-center bg-black/60 text-white p-6">
+                        <h3 class="font-serif text-2xl font-bold text-rose-400 mb-2">Ready to Play?</h3>
+                        <p class="text-xs text-slate-300 mb-4">Move your basket to catch 10 romantic symbols!</p>
+                        <button onclick="startGame()" class="px-6 py-2.5 bg-rose-600 hover:bg-rose-500 font-semibold rounded-xl text-sm shadow">Start Catcher Game</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== SECTION 10: GIFT PAGE ==================== -->
+        <section id="sec-gift" class="max-w-4xl mx-auto px-4 py-16">
+            <div class="text-center mb-10">
+                <span class="text-rose-400 text-xs font-semibold uppercase tracking-widest">Section 10</span>
+                <h2 class="text-3xl font-bold font-serif text-white mt-1">The Personalized Surprise Gift</h2>
+                <p class="text-emerald-200 text-sm mt-2">Open the emerald gift box to reveal your birthday certificate.</p>
+            </div>
+
+            <div class="glass-panel p-8 md:p-12 rounded-3xl shadow-2xl text-center">
+                <!-- Gift Box State -->
+                <div id="gift-box-wrapper" class="py-8">
+                    <div class="w-32 h-32 bg-gradient-to-tr from-emerald-600 to-emerald-800 rounded-3xl mx-auto mb-6 shadow-2xl flex items-center justify-center text-white text-5xl cursor-pointer hover:scale-105 transition border-2 border-emerald-400/40 relative animate-float" onclick="openGiftBox()">
+                        <div class="absolute inset-x-0 top-1/2 -translate-y-1/2 h-6 bg-rose-500 shadow"></div>
+                        <div class="absolute inset-y-0 left-1/2 -translate-x-1/2 w-6 bg-rose-500 shadow"></div>
+                        <i class="fas fa-gift relative z-10"></i>
+                    </div>
+                    <h3 class="font-serif text-2xl font-bold text-emerald-900 mb-2">A Special Gift Awaits</h3>
+                    <p class="text-slate-600 text-sm mb-6">Click the gift box to unpack your certificate of endless appreciation.</p>
+                    <button onclick="openGiftBox()" class="px-6 py-3 bg-rose-600 hover:bg-rose-500 text-white font-semibold rounded-xl shadow-lg transition">Unbox Gift 🎁</button>
+                </div>
+
+                <!-- Gift Certificate State (Hidden initially) -->
+                <div id="gift-certificate" class="hidden bg-white border-4 border-emerald-700 p-8 rounded-2xl shadow-2xl relative text-slate-800">
+                    <div class="absolute top-4 right-4 text-rose-600 text-3xl"><i class="fas fa-certificate"></i></div>
+                    <span class="text-xs uppercase font-bold tracking-widest text-emerald-700">Certificate of Special Recognition</span>
+                    <h3 class="font-serif text-3xl font-bold text-emerald-900 mt-2 mb-1">Official Birthday Honoree</h3>
+                    <p class="text-slate-500 text-sm mb-6">This certifies that on October 25th</p>
+                    <h2 class="font-serif text-4xl font-bold text-rose-600 my-4">PRUTHVI</h2>
+                    <p class="text-slate-600 text-sm max-w-lg mx-auto leading-relaxed mb-6">
+                        Is officially awarded this testament of boundless love, unmatched elegance, and perpetual joy. May your days be filled with emerald greenery, rose blossoms, and wonderful triumphs.
+                    </p>
+                    <div class="flex items-center justify-between pt-6 border-t border-slate-200">
+                        <div class="text-left">
+                            <span class="block text-xs font-semibold text-emerald-900">Date: October 25</span>
+                            <span class="text-[10px] text-slate-400">Verified & Approved</span>
+                        </div>
+                        <div class="text-right">
+                            <span class="font-serif italic text-emerald-800 text-lg">With Eternal Affection</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== SECTION 11: FINAL CELEBRATION & FIREWORKS ==================== -->
+        <section id="sec-finale" class="max-w-5xl mx-auto px-4 py-16 text-center">
+            <div class="glass-panel p-10 md:p-16 rounded-3xl shadow-2xl relative overflow-hidden border-2 border-rose-500/30">
+                <div class="absolute inset-0 z-0 pointer-events-none">
+                    <canvas id="fireworks-canvas" class="w-full h-full block"></canvas>
+                </div>
+
+                <div class="relative z-10">
+                    <span class="px-4 py-1.5 rounded-full bg-rose-100 text-rose-700 text-xs font-semibold uppercase tracking-widest inline-block mb-4 shadow">
+                        ✨ Grand Finale ✨
+                    </span>
+                    <h2 class="text-4xl md:text-5xl font-bold font-serif text-emerald-900 mb-4">Happy Birthday, PRUTHVI!</h2>
+                    <p class="text-slate-700 text-base max-w-2xl mx-auto mb-8 font-light">
+                        Thank you for sharing your incredible light with the world. May this new chapter bring you endless success, breathtaking adventures, and unfathomable happiness.
+                    </p>
+
+                    <div class="flex flex-wrap items-center justify-center gap-4">
+                        <button onclick="launchFireworks()" class="px-6 py-3 bg-gradient-to-r from-rose-600 to-emerald-600 hover:opacity-90 text-white font-bold rounded-xl shadow-xl transition transform hover:scale-105">
+                            Launch Fireworks 🎆
+                        </button>
+                        <button onclick="navigateToSection('sec-dashboard')" class="px-6 py-3 bg-emerald-900 hover:bg-emerald-800 text-white font-semibold rounded-xl shadow-xl transition">
+                            Back to Dashboard 🏠
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- ==================== JAVASCRIPT LOGIC ==================== -->
+    <script>
+      const AUDIO_FILE_SRC = "media/as.mp3"; 
+
+let bgAudio = null;
+let isMusicPlaying = false;
+
+// Initialize the Audio object
+function initAudioFile() {
+    if (!bgAudio) {
+        bgAudio = new Audio(AUDIO_FILE_SRC);
+        bgAudio.loop = true; // Loop the background track continuously
+        bgAudio.volume = 0.5; // Set volume (0.0 to 1.0)
+    }
+}
+
+// Start playing the audio file
+function startBackgroundMusic() {
+    initAudioFile();
+    if (isMusicPlaying) return;
+
+    bgAudio.play().then(() => {
+        isMusicPlaying = true;
+
+        // Update UI elements
+        const widget = document.getElementById('audio-widget');
+        if (widget) widget.classList.remove('hidden');
+
+        const musicIcon = document.getElementById('music-icon');
+        if (musicIcon) musicIcon.className = 'fas fa-volume-high text-xl';
+
+        const navBtn = document.getElementById('nav-music-btn');
+        if (navBtn) {
+            navBtn.innerHTML = '<i class="fas fa-volume-high"></i><span class="hidden sm:inline">Music On</span>';
+        }
+    }).catch((error) => {
+        console.error("Audio playback failed (User interaction may be required first):", error);
+    });
+}
+
+// Stop/Pause playing the audio file
+function stopBackgroundMusic() {
+    if (bgAudio) {
+        bgAudio.pause();
+        // Optional: bgAudio.currentTime = 0; // Uncomment if you want to restart from the beginning next time
+    }
+    isMusicPlaying = false;
+
+    // Update UI elements
+    const musicIcon = document.getElementById('music-icon');
+    if (musicIcon) musicIcon.className = 'fas fa-volume-xmark text-xl';
+
+    const navBtn = document.getElementById('nav-music-btn');
+    if (navBtn) {
+        navBtn.innerHTML = '<i class="fas fa-volume-xmark"></i><span class="hidden sm:inline">Music Off</span>';
+    }
+}
+
+// Toggle play/pause state on button click
+function toggleBackgroundMusic() {
+    if (isMusicPlaying) {
+        stopBackgroundMusic();
+    } else {
+        startBackgroundMusic();
+    }
+}
+        // --- Custom Modal Helper ---
+        function showModal(title, message, iconClass = "fas fa-heart text-rose-500") {
+            document.getElementById('modal-title').innerText = title;
+            document.getElementById('modal-message').innerText = message;
+            document.getElementById('modal-icon').innerHTML = `<i class="${iconClass}"></i>`;
+            document.getElementById('custom-modal').classList.remove('hidden');
+        }
+
+        function closeModal() {
+            document.getElementById('custom-modal').classList.add('hidden');
+        }
+
+        // --- Navigation Logic ---
+        function handleLogin(event) {
+            event.preventDefault();
+            const userid = document.getElementById('login-userid').value.trim().toUpperCase();
+            const pass = document.getElementById('login-password').value.trim().toUpperCase();
+
+            if (userid === 'PRUTHVI' && pass === '25OCT') {
+                document.getElementById('sec-login').classList.add('hidden');
+                document.getElementById('main-app').classList.remove('hidden');
+                startBackgroundMusic();
+                showModal("Welcome PRUTHVI!", "Login successful! Your cinematic birthday celebration has begun.", "fas fa-crown text-amber-500");
+                initCountdown();
+                initReasons();
+            } else {
+                showModal("Login Failed", "Please check your User ID (PRUTHVI) and Password (25OCT).", "fas fa-triangle-exclamation text-rose-600");
+            }
+        }
+
+        function togglePasswordVisibility() {
+            const passInput = document.getElementById('login-password');
+            const eyeIcon = document.getElementById('eye-icon');
+            if (passInput.type === 'password') {
+                passInput.type = 'text';
+                eyeIcon.className = 'fas fa-eye-slash';
+            } else {
+                passInput.type = 'password';
+                eyeIcon.className = 'fas fa-eye';
+            }
+        }
+
+        function navigateToSection(secId) {
+            const el = document.getElementById(secId);
+            if (el) {
+                el.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        function openNavDrawer() {
+            document.getElementById('mobile-drawer').classList.remove('hidden');
+        }
+
+        function closeNavDrawer() {
+            document.getElementById('mobile-drawer').classList.add('hidden');
+        }
+
+        // --- Countdown Timer ---
+        function initCountdown() {
+            // Target Oct 25th
+            const targetDate = new Date(new Date().getFullYear(), 9, 10, 0, 0, 0);
+            if (new Date() > targetDate) {
+                targetDate.setFullYear(targetDate.getFullYear() + 1);
+            }
+
+            setInterval(() => {
+                const now = new Date();
+                const diff = targetDate - now;
+                if (diff > 0) {
+                    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+                    const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+                    const mins = Math.floor((diff / 1000 / 60) % 60);
+                    const secs = Math.floor((diff / 1000) % 60);
+
+                    document.getElementById('cd-days').innerText = String(days).padStart(2, '0');
+                    document.getElementById('cd-hours').innerText = String(hours).padStart(2, '0');
+                    document.getElementById('cd-mins').innerText = String(mins).padStart(2, '0');
+                    document.getElementById('cd-secs').innerText = String(secs).padStart(2, '0');
+                }
+            }, 1000);
+        }
+
+        // --- Letter Typewriter ---
+        const letterText = "Happy Birthday, My Dearest Sister Pruthvi! 🎂💖,\n\nOn your special day, I wish that every dream hidden in your heart finds its way into reality, every tear turns into a smile, and every new chapter of your life brings endless happiness, love, success, and peace. 🌸💫 May your life shine brighter than the stars, bloom more beautifully than the flowers, and become more wonderful with every passing year. No matter how much we grow or how life changes, you will always have a special place in my heart that nobody else can ever take. 🥹💗 I may not always express how much you mean to me, but I hope you always remember that you have a brother who wishes to see you happy, successful, and smiling throughout your life. May God protect your beautiful heart, bless your journey, and make this birthday the beginning of your most magical year yet. 👑🌷 Happy Birthday, Pruthvi Akka! \n\nMay your year ahead be filled with breathtaking adventures, sincere laughter, and dreams turning into reality. You deserve all the beauty this world has to offer.\n\nHappy Birthday, PRUTHVI!";
+    let typewriterStarted = false;
+    let typewriterTimer = null; // To keep track of the timer for clean resets
+
+    function openLetter() {
+        document.getElementById('envelope-container').classList.add('hidden');
+        document.getElementById('letter-content').classList.remove('hidden');
+        if (!typewriterStarted) {
+            typewriterStarted = true;
+            runTypewriter('typewriter-text', letterText, 35);
+        }
+    }
+
+    function resetLetter() {
+        clearTimeout(typewriterTimer); // Stop any active typing loop
+        document.getElementById('letter-content').classList.add('hidden');
+        document.getElementById('envelope-container').classList.remove('hidden');
+        typewriterStarted = false;
+        document.getElementById('typewriter-text').textContent = "";
+    }
+
+    function runTypewriter(elementId, text, speed) {
+        let i = 0;
+        const el = document.getElementById(elementId);
+        el.textContent = "";
+        
+        function typing() {
+            if (i < text.length) {
+                el.textContent += text.charAt(i);
+                i++;
+                typewriterTimer = setTimeout(typing, speed);
+            }
+        }
+        typing();
+    }
+
+        // --- Wishes Generator ---
+        const wishesData = {
+            en: [
+                "May your birthday sparkle with moments of love, laughter, and goodwill, and may the year ahead be full of blessings and joy. Happy Birthday, PRUTHVI!",
+                "Wishing a wonderful birthday to the most radiant soul, PRUTHVI! May your path be lined with emerald green success and rose-tinted happiness.",
+                "Happy Birthday, PRUTHVI! May this special day bring you endless joy and tons of precious memories."
+            ],
+            es: [
+                "¡Que tu cumpleaños brille con momentos de amor y alegría! ¡Feliz cumpleaños, PRUTHVI!",
+                "Te deseo un día maravilloso lleno de bendiciones y sonrisas. ¡Feliz cumpleaños, PRUTHVI!"
+            ],
+            fr: [
+                "Joyeux anniversaire à une personne extraordinaire ! Que cette journée soit magique, PRUTHVI.",
+                "Puisse ton année être remplie de bonheur et de succès. Bon anniversaire, PRUTHVI !"
+            ],
+            po: [
+                "Like emerald leaves in morning dew, and roses kissed by golden light, may all your dearest dreams come true, and every future day be bright. Happy Birthday,PRUTHVI !",
+                "In the garden of time, you are the rarest blossom. Have a truly magnificent birthday, PRUTHVI!"
+            ]
+        };
+        let currentLang = 'en';
+        let currentWishIndex = 0;
+
+        function generateWish(lang) {
+            currentLang = lang;
+            currentWishIndex = 0;
+            document.querySelectorAll('.wish-lang-btn').forEach(btn => {
+                btn.className = 'wish-lang-btn px-4 py-2 bg-emerald-800 text-emerald-200 rounded-xl text-sm font-semibold shadow transition';
+            });
+            event.target.className = 'wish-lang-btn px-4 py-2 bg-emerald-600 text-white rounded-xl text-sm font-semibold shadow transition';
+            updateWishDisplay();
+        }
+
+        function randomizeWish() {
+            const arr = wishesData[currentLang];
+            currentWishIndex = (currentWishIndex + 1) % arr.length;
+            updateWishDisplay();
+        }
+
+        function updateWishDisplay() {
+            const arr = wishesData[currentLang];
+            document.getElementById('wish-display-text').innerText = arr[currentWishIndex];
+        }
+
+        function copyWishText() {
+            const txt = document.getElementById('wish-display-text').innerText;
+            const tempInput = document.createElement('textarea');
+            tempInput.value = txt;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            try {
+                document.execCommand('copy');
+                showModal("Copied!", "Wish copied to clipboard successfully.", "fas fa-check-circle text-emerald-600");
+            } catch(e) {
+                showModal("Notice", "Unable to copy automatically.", "fas fa-info-circle text-amber-500");
+            }
+            document.body.removeChild(tempInput);
+        }
+
+        // --- Cake Ceremony ---
+        let candlesBlown = false;
+        function blowCandles() {
+            candlesBlown = true;
+            document.getElementById('flame-1').style.display = 'none';
+            document.getElementById('flame-2').style.display = 'none';
+            document.getElementById('flame-3').style.display = 'none';
+            const wish = document.getElementById('cake-wish-input').value || "A secret wonderful wish";
+            showModal("Candles Blown!", `Your wish: "${wish}" has been sent to the stars!`, "fas fa-fire-flame-curved text-amber-500");
+        }
+
+        function sliceCake() {
+            const cakeBody = document.getElementById('cake-body');
+            cakeBody.style.transform = 'skewX(-10deg) scale(0.95)';
+            setTimeout(() => { cakeBody.style.transform = 'none'; }, 500);
+            triggerCakeConfetti();
+            showModal("Cake Sliced!", "Delicious cake shared with love and joy!", "fas fa-cake-candles text-rose-500");
+        }
+
+        function triggerCakeConfetti() {
+            for(let i=0; i<30; i++) {
+                createAmbientParticle();
+            }
+        }
+
+        // --- Gallery Lightbox ---
+        function openLightbox(imgSrc, caption) {
+            document.getElementById('lightbox-img').src = imgSrc;
+            document.getElementById('lightbox-caption').innerText = caption;
+            document.getElementById('lightbox-modal').classList.remove('hidden');
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox-modal').classList.add('hidden');
+        }
+
+        // --- Video Player ---
+        function toggleCustomVideo() {
+            const video = document.getElementById('custom-video-player');
+            const overlay = document.getElementById('video-overlay-play');
+            if (video.paused) {
+                video.play();
+                overlay.style.display = 'none';
+            } else {
+                video.pause();
+                overlay.style.display = 'flex';
+            }
+        }
+
+        // --- 15+ Reasons ---
+        const reasonsList = [
+            "Your radiant smile brightens even the cloudiest days.",
+            "Your unwavering kindness touches everyone around you.",
+            "Your intelligence and creativity are truly inspiring.",
+            "You bring effortless elegance and grace to every moment.",
+            "Your laughter is the most delightful melody.",
+            "You have a heart of absolute gold.",
+            "Your resilience in the face of challenges is admirable.",
+            "You make ordinary moments feel extraordinary.",
+            "Your sense of humor always lifts our spirits.",
+            "You are a loyal and supportive friend/partner.",
+            "Your passion for life is contagious.",
+            "You have a gorgeous aesthetic and refined taste.",
+            "Your listening ear provides deep comfort.",
+            "You inspire us to be the best versions of ourselves.",
+            "Because you are uniquely, wonderfully, irreplaceable you."
+        ];
+
+        function initReasons() {
+            const grid = document.getElementById('reasons-grid');
+            grid.innerHTML = '';
+            reasonsList.forEach((reason, idx) => {
+                const card = document.createElement('div');
+                card.className = 'glass-panel p-6 rounded-3xl shadow-xl hover:shadow-2xl transition transform hover:-translate-y-1 border-l-4 border-emerald-500 flex flex-col justify-between';
+                card.innerHTML = `
+                    <div>
+                        <span class="text-xs font-bold text-rose-500 uppercase tracking-wider">Reason #${idx + 1}</span>
+                        <p class="font-serif text-slate-800 text-base mt-2">${reason}</p>
+                    </div>
+                    <div class="mt-4 text-right text-emerald-700 text-sm"><i class="fas fa-heart"></i></div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        // --- Surprise Catcher Game ---
+        let gameRunning = false;
+        let score = 0;
+        let gameCanvas, gameCtx;
+        let basket = { x: 150, y: 280, width: 60, height: 15 };
+        let items = [];
+        let gameInterval = null;
+
+        function startGame() {
+            gameRunning = true;
+            score = 0;
+            document.getElementById('game-score').innerText = score;
+            document.getElementById('game-overlay-msg').classList.add('hidden');
+            gameCanvas = document.getElementById('catcher-canvas');
+            gameCanvas.width = gameCanvas.clientWidth;
+            gameCanvas.height = gameCanvas.clientHeight;
+            gameCtx = gameCanvas.getContext('2d');
+            items = [];
+
+            // Mouse / Touch movement
+            gameCanvas.onmousemove = (e) => {
+                const rect = gameCanvas.getBoundingClientRect();
+                basket.x = e.clientX - rect.left - basket.width / 2;
+            };
+            gameCanvas.ontouchmove = (e) => {
+                const rect = gameCanvas.getBoundingClientRect();
+                if (e.touches.length > 0) {
+                    basket.x = e.touches[0].clientX - rect.left - basket.width / 2;
+                }
+            };
+
+            if (gameInterval) clearInterval(gameInterval);
+            gameInterval = setInterval(updateGame, 30);
+        }
+
+        function updateGame() {
+            if (!gameRunning) return;
+            gameCtx.clearRect(0, 0, gameCanvas.width, gameCanvas.height);
+
+            // Spawn items
+            if (Math.random() < 0.05) {
+                items.push({
+                    x: Math.random() * (gameCanvas.width - 30),
+                    y: -20,
+                    radius: 12,
+                    speed: 2 + Math.random() * 3,
+                    color: Math.random() > 0.5 ? '#f43f5e' : '#10b981'
+                });
+            }
+
+            // Draw basket
+            gameCtx.fillStyle = '#f59e0b';
+            gameCtx.roundRect ? gameCtx.fillRect(basket.x, basket.y, basket.width, basket.height, 8) : gameCtx.fillRect(basket.x, basket.y, basket.width, basket.height);
+
+            // Update & draw items
+            for (let i = items.length - 1; i >= 0; i--) {
+                let itm = items[i];
+                itm.y += itm.speed;
+
+                gameCtx.fillStyle = itm.color;
+                gameCtx.beginPath();
+                gameCtx.arc(itm.x, itm.y, itm.radius, 0, Math.PI * 2);
+                gameCtx.fill();
+
+                // Collision detection
+                if (itm.y + itm.radius >= basket.y && itm.x >= basket.x && itm.x <= basket.x + basket.width) {
+                    items.splice(i, 1);
+                    score++;
+                    document.getElementById('game-score').innerText = score;
+                    if (score >= 10) {
+                        gameRunning = false;
+                        clearInterval(gameInterval);
+                        showModal("Trophy Unlocked! 🏆", "Amazing job! You caught 10 romantic symbols and unlocked the PRUTHVI Achievement Trophy!", "fas fa-trophy text-amber-500");
+                        document.getElementById('game-overlay-msg').classList.remove('hidden');
+                        document.getElementById('game-overlay-msg').innerHTML = `
+                            <h3 class="font-serif text-2xl font-bold text-amber-400 mb-2">Victory! Trophy Unlocked 🏆</h3>
+                            <p class="text-xs text-slate-200 mb-4">You successfully completed the catcher challenge!</p>
+                            <button onclick="startGame()" class="px-6 py-2.5 bg-rose-600 hover:bg-rose-500 font-semibold rounded-xl text-sm shadow">Play Again</button>
+                        `;
+                    }
+                } else if (itm.y > gameCanvas.height) {
+                    items.splice(i, 1);
+                }
+            }
+        }
+
+        // --- Gift Box Open ---
+        function openGiftBox() {
+            document.getElementById('gift-box-wrapper').classList.add('hidden');
+            document.getElementById('gift-certificate').classList.remove('hidden');
+            showModal("Gift Unboxed!", "Your official Certificate of Special Recognition has been revealed!", "fas fa-certificate text-rose-500");
+        }
+
+        // --- Fireworks Animation (Finale) ---
+        let fireworksRunning = false;
+        function launchFireworks() {
+            const canvas = document.getElementById('fireworks-canvas');
+            canvas.width = canvas.parentElement.clientWidth;
+            canvas.height = canvas.parentElement.clientHeight;
+            const ctx = canvas.getContext('2d');
+            fireworksRunning = true;
+
+            let particles = [];
+            for(let i=0; i<100; i++) {
+                particles.push({
+                    x: canvas.width / 2,
+                    y: canvas.height / 2,
+                    vx: (Math.random() - 0.5) * 12,
+                    vy: (Math.random() - 0.5) * 12,
+                    color: ['#f43f5e', '#10b981', '#f59e0b', '#ffffff'][Math.floor(Math.random()*4)],
+                    alpha: 1
+                });
+            }
+
+            function animFire() {
+                if (!fireworksRunning) return;
+                ctx.fillStyle = 'rgba(6, 78, 59, 0.2)';
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+                particles.forEach(p => {
+                    p.x += p.vx;
+                    p.y += p.vy;
+                    p.alpha -= 0.015;
+                    ctx.save();
+                    ctx.globalAlpha = Math.max(p.alpha, 0);
+                    ctx.fillStyle = p.color;
+                    ctx.beginPath();
+                    ctx.arc(p.x, p.y, 4, 0, Math.PI * 2);
+                    ctx.fill();
+                    ctx.restore();
+                });
+
+                particles = particles.filter(p => p.alpha > 0);
+                if (particles.length > 0) {
+                    requestAnimationFrame(animFire);
+                } else {
+                    fireworksRunning = false;
+                }
+            }
+            animFire();
+        }
+        </script>
+</body>
+</html>
